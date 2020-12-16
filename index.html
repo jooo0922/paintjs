@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <title>PaintJS</title>
+</head>
+<body>
+    <!-- 
+        canvas는 html의 한 요소인데, context를 갖는다는 게 좀 다르다.
+        context란 해당 canvas요소 안에서 우리가 픽셀에 접근할 수 있는 방법
+        이론적으로 canvas안에 있는 픽셀들인 것!
+
+        context를 만드는 간단한 방법
+        js안에 context variable을 만들면 됨!
+
+        const canvas = document.getElementById('jsCanvas');
+        const ctx = canvas.getContext('2d');     -> 요런 식으로!
+        
+        2d뿐만 아니라 많은 context가 있음. 3d도 있고 등등... 
+        이렇게 하면 우리가 할 수 있는 context는 모두 갖게 됨
+        예를들어, 2d로 하면 2d와 관련된 픽셀에 접근하는 수많은 기능들을 사용할 수 있는거!
+        
+        이러한 canvas의 context로 paintjs에서 작업을 할것이다 
+        MDN에서 CanvasRenderingContext2D, Canvas API 검색해볼것. 
+        크리에이티브 코딩, 디자인 구현할 때 요긴하게 쓰일 것 같음.
+    -->
+    <!-- 
+        이번 수업에서는 js에서는 id, css에서는 class를 사용할 것.
+        id를 쓰나 class를 쓰나 상관없다는 뜻.
+    -->
+    <canvas id="jsCanvas" class="canvas"></canvas>
+    <div class="controls">
+
+        <!-- 
+            페인트 브러쉬 사이즈를 컨트롤하는 input이므로, 
+            정확하진 않지만 대략적인 range(범위)값만 받아도 될 때 사용하는 input이 필요함. 
+            min: range input의 최소값
+            max: 최대값
+            value: default 상태에서 놓이게 될 값
+            step: 얼마만큼의 단위로 range값 조절할 것인가?\
+            코딩을 하게 되면 이 값들이 뭔지 알게 될거라는디..?
+            MDN에서 보니까 JS DOM구조로 이 값들에 접근해서 컨트롤하는 방식인 듯...
+        -->
+        <div class="controls__range">
+            <input type="range" id="jsRange" min="0.1" max="5" value="2.5" step="0.1">
+            <!-- 
+                default value를 2.5로 넣은 이유가 있었구나..
+                js에서 ctx.lineWidth = 2.5;
+                이렇게 컨텍스트의 lineWidth의 기본값을 2.5로 지정하려고 range input 기본값도 2.5로 해놓은 거였음... 
+            -->
+        </div>
+
+        <div class="controls__btns">
+            <button id="jsMode">Fill</button>
+            <button id="jsSave">Save</button>
+        </div>
+
+        <div class="controls__colors" id="jsColors">
+            <div class="controls__color jsColor" style="background-color: #2c2c2c;"></div>
+            <div class="controls__color jsColor" style="background-color: white;"></div>
+            <div class="controls__color jsColor" style="background-color: #ff3b30;"></div>
+            <div class="controls__color jsColor" style="background-color: #ff9500;"></div>
+            <div class="controls__color jsColor" style="background-color: #ffcc00;"></div>
+            <div class="controls__color jsColor" style="background-color: #4cd963;"></div>
+            <div class="controls__color jsColor" style="background-color: #5ac8fa;"></div>
+            <div class="controls__color jsColor" style="background-color: #0579ff;"></div>
+            <div class="controls__color jsColor" style="background-color: #5856d6;"></div>
+        </div>
+    </div>
+</body>
+</html>
